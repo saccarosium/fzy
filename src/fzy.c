@@ -13,7 +13,8 @@
 
 #include "../config.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 	int ret = 0;
 
 	options_t options;
@@ -24,7 +25,8 @@ int main(int argc, char *argv[]) {
 
 	if (options.benchmark) {
 		if (!options.filter) {
-			fprintf(stderr, "Must specify -e/--show-matches with --benchmark\n");
+			fprintf(stderr,
+				"Must specify -e/--show-matches with --benchmark\n");
 			exit(EXIT_FAILURE);
 		}
 		choices_fread(&choices, stdin, options.input_delimiter);
@@ -57,8 +59,10 @@ int main(int argc, char *argv[]) {
 		if (options.show_info)
 			num_lines_adjustment++;
 
-		if (options.num_lines + num_lines_adjustment > tty_getheight(&tty))
-			options.num_lines = tty_getheight(&tty) - num_lines_adjustment;
+		if (options.num_lines + num_lines_adjustment >
+		    tty_getheight(&tty))
+			options.num_lines =
+				tty_getheight(&tty) - num_lines_adjustment;
 
 		tty_interface_t tty_interface;
 		tty_interface_init(&tty_interface, &tty, &choices, &options);
